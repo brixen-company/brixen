@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BRIXEN Automated Quotation Management Platform</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div class="brand-container">
+      <img src="assets/brixen_logo_black_red.png" alt="BRIXEN LLC" class="brand-logo" onerror="this.style.display='none'; document.getElementById('textLogo').style.display='block';">
+      <div id="textLogo" style="display:none; font-size:22px; font-weight:800; letter-spacing:1px; color:#111;">
+        BRI<span style="color:#E30613;">X</span>EN <span style="font-size:13px; color:#555;">LLC</span>
+      </div>
+      <div class="brand-divider"></div>
+      <div class="system-title-box">
+        <div class="system-title">منصة إدارة وحساب عروض الأسعار</div>
+        <div class="system-subtitle">BRIXEN Commercial Quotation Engine — C.R. 7054850701</div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <div class="badge badge-connected" title="قاعدة بيانات Google Sheets متصلة">
+        <span class="badge-dot"></span>
+        <span id="dbStatusLabel">متصل بـ Google Sheets</span>
+      </div>
+      <button type="button" class="btn btn-sm btn-secondary" id="langToggleBtn">English</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <button type="button" class="nav-link active" data-view="dashboard">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <span>لوحة التحكم (Dashboard)</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-view="create">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            <span>إنشاء عرض سعر جديد</span>
+            <span class="nav-pill">جديد</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-view="history">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>سجل عروض الأسعار</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-view="customers">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span>سجل العملاء والمشاريع</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-view="pricelist">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+            <span>الأسعار والقطاعات (Price List)</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-view="decisions">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            <span>الشروط والسياسات (Terms)</span>
+          </button>
+        </li>
+      </ul>
+
+      <div style="font-size:11px; color:#888; text-align:center; padding:10px; border-top:1px solid var(--border-color);">
+        BRIXEN LLC • Version 1.0.0<br>
+        Al-Rajhi Bank SA4080000510608010602103
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+
+      <!-- ============================================================= -->
+      <!-- VIEW 1: DASHBOARD -->
+      <!-- ============================================================= -->
+      <section id="view-dashboard" class="view-section active">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>لوحة مؤشرات عروض الأسعار</h1>
+            <p>نظرة عامة حية ومباشرة على عروض الأسعار المعتمدة والمشاريع وقيمة المبيعات</p>
+          </div>
+          <button type="button" class="btn btn-action" onclick="document.querySelector('.nav-link[data-view=\'create\']').click();">
+            <span>+ إنشاء عرض سعر فوري</span>
+          </button>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">إجمالي عروض الأسعار</div>
+            <div class="kpi-value" id="kpiTotalQuotes">0</div>
+            <div class="kpi-subtext">مسجلة في قاعدة البيانات</div>
+          </div>
+          <div class="kpi-card accent-green">
+            <div class="kpi-label">العروض المصدرة (Issued)</div>
+            <div class="kpi-value" id="kpiIssuedQuotes">0</div>
+            <div class="kpi-subtext">تم إصدارها رسمياً مع الختم</div>
+          </div>
+          <div class="kpi-card accent-red">
+            <div class="kpi-label">إجمالي القيمة التقديرية</div>
+            <div class="kpi-value" id="kpiPipelineSAR">0.00 SAR</div>
+            <div class="kpi-subtext">شاملة ضريبة القيمة المضافة 15%</div>
+          </div>
+          <div class="kpi-card accent-gold">
+            <div class="kpi-label">عدد العملاء المسجلين</div>
+            <div class="kpi-value" id="kpiTotalCustomers">0</div>
+            <div class="kpi-subtext">في سجل العملاء المعتمد</div>
+          </div>
+        </div>
+
+        <!-- Alert: Commercial Policies & Terms Control -->
+        <div class="alert-banner alert-info" style="display:flex; align-items:center; gap:12px;">
+          <div style="font-size:20px;">⚙️</div>
+          <div>
+            <div class="alert-title">التحكم المرن في الشروط والبنود</div>
+            <div>يمكنك إضافة وتعديل أي بند في جدول الكميات (BOQ)، وتحديد واختيار الشروط والأحكام الخاصة بكل عرض سعر بدقة من شاشة إنشاء العرض أو تبويب <b>«الشروط والسياسات»</b>.</div>
+          </div>
+        </div>
+
+        <!-- Recent Quotations Card -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">آخر عروض الأسعار الصادرة مؤخراً</div>
+          </div>
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>رقم المرجع</th>
+                  <th>اسم العميل</th>
+                  <th>المشروع</th>
+                  <th>التاريخ</th>
+                  <th>الإجمالي شامل الضريبة</th>
+                  <th>الحالة</th>
+                  <th>إجراء</th>
+                </tr>
+              </thead>
+              <tbody id="dashboardRecentQuotesTable">
+                <tr><td colspan="7" style="text-align:center; color:#888; padding:24px;">جاري تحميل عروض الأسعار...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- VIEW 2: CREATE QUOTATION (SMART BOQ BUILDER) -->
+      <!-- ============================================================= -->
+      <section id="view-create" class="view-section">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>إنشاء عرض سعر تجاري معتمد (Smart BOQ Engine)</h1>
+            <p>إدخال المقاسات واحتساب المساحات وتطبيق الحد الأدنى والضريبة 15% بضغطة زر واحدة</p>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="btn btn-secondary" id="livePreviewBtn">
+              <span>👁️ معاينة مباشرة (A4 Preview)</span>
+            </button>
+            <button type="button" class="btn btn-action" id="issueQuotationBtn">
+              <span>🚀 إصدار عرض السعر / Issue Quotation</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Section 1: Customer & Metadata -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">1. بيانات العميل والمشروع والمرجع</div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">اختيار عميل مسجل:</label>
+              <select class="form-control" id="quoteCustomerSelect">
+                <option value="">-- اختر العميل --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">اسم العميل <span class="required">*</span>:</label>
+              <input type="text" class="form-control" id="quoteCustomerNameInput" value="الأستاذ/ عبد الخالق المري" placeholder="الاسم الكامل للعميل">
+            </div>
+            <div class="form-group">
+              <label class="form-label">اسم المشروع <span class="required">*</span>:</label>
+              <input type="text" class="form-control" id="quoteProjectNameInput" value="مشروع فيلا سكنية - أعمال الألمنيوم والواجهات">
+            </div>
+            <div class="form-group">
+              <label class="form-label">تاريخ العرض:</label>
+              <input type="date" class="form-control" id="quoteDateInput" value="2026-10-27">
+            </div>
+            <div class="form-group" style="grid-column:1 / -1; background:#f8fafc; padding:12px 16px; border-radius:6px; border:1px solid #e2e8f0; margin-top:4px;">
+              <label class="form-label" style="font-weight:700; color:#1F4E79; margin-bottom:8px;">
+                🌐 لغة طباعة وإصدار عرض السعر (Document Language Mode):
+              </label>
+              <div class="lang-selector-group" style="display:flex; gap:20px; flex-wrap:wrap;">
+                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:600;">
+                  <input type="radio" name="docLanguageMode" value="AR" checked id="langModeAR">
+                  <span>🇸🇦 عربي فقط (ملف واحد PDF باللغة العربية)</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:600;">
+                  <input type="radio" name="docLanguageMode" value="EN" id="langModeEN">
+                  <span>🇬🇧 إنجليزي فقط (ملف واحد PDF إنجليزي 100%)</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:700; color:#1F4E79;">
+                  <input type="radio" name="docLanguageMode" value="BOTH" id="langModeBoth">
+                  <span>🌐 عربي وإنجليزي معاً (توليد ملفين منفصلين 2 PDFs: ملف عربي كامل + ملف إنجليزي كامل)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Smart BOQ Table -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">2. جدول الكميات والمقاسات الذكي (Smart BOQ Table)</div>
+            <button type="button" class="btn btn-sm btn-primary" id="addBoqRowBtn">+ إضافة بند جديد</button>
+          </div>
+
+          <div class="boq-grid-container">
+            <table class="boq-input-table">
+              <thead>
+                <tr>
+                  <th style="width:60px;">رمز البند</th>
+                  <th style="width:110px;">التصنيف</th>
+                  <th>الوصف الفني والمواصفات</th>
+                  <th style="width:75px;">العرض (م)</th>
+                  <th style="width:75px;">الارتفاع (م)</th>
+                  <th style="width:65px;">العدد</th>
+                  <th style="width:95px;">المساحة (م²)</th>
+                  <th style="width:90px;">السعر (SAR)</th>
+                  <th style="width:115px;">الإجمالي (SAR)</th>
+                  <th style="width:50px;">حذف</th>
+                </tr>
+              </thead>
+              <tbody id="boqTableBody">
+                <!-- Dynamically generated rows -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Alert for Rule (*) -->
+          <div id="minChargeAlertBox" class="alert-banner alert-info" style="display:none; padding:10px 14px; font-size:12.5px; margin-bottom:14px;"></div>
+
+          <!-- Financial Summary Box -->
+          <div class="summary-box">
+            <div class="summary-row">
+              <span>إجمالي البنود قبل الضريبة:</span>
+              <span id="sumSubtotal" style="font-weight:700;">0.00 SAR</span>
+            </div>
+            <div class="summary-row">
+              <span>ضريبة القيمة المضافة (15%):</span>
+              <span id="sumVAT" style="font-weight:700;">0.00 SAR</span>
+            </div>
+            <div class="summary-row total-row">
+              <span>الإجمالي شامل الضريبة:</span>
+              <span id="sumGrandTotal">0.00 SAR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Commercial Terms & Interactive Checklist -->
+        <div class="card">
+          <div class="card-header" style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-title">3. الشروط والأحكام الخاصة بالعرض (Terms & Conditions)</div>
+            <button type="button" class="btn btn-sm btn-primary" id="btnAddCustomTermToQuoteBtn">+ إضافة شرط مخصص لهذا العرض</button>
+          </div>
+          <div class="form-grid" style="margin-bottom:16px;">
+            <div class="form-group">
+              <label class="form-label">صلاحية عرض السعر (أيام):</label>
+              <input type="number" class="form-control" id="quoteValidityInput" value="3">
+            </div>
+            <div class="form-group">
+              <label class="form-label">مدة التوريد (أيام تقويمية):</label>
+              <input type="number" class="form-control" id="quoteDeliveryInput" value="30">
+            </div>
+            <div class="form-group">
+              <label class="form-label">مدة التركيب (أيام تقويمية):</label>
+              <input type="number" class="form-control" id="quoteInstallInput" value="10">
+            </div>
+            <div class="form-group">
+              <label class="form-label">الحساب البنكي المعتمد:</label>
+              <input type="text" class="form-control" value="مصرف الراجحي - SA4080000510608010602103" readonly style="background:#f5f5f5;">
+            </div>
+          </div>
+
+          <div style="font-weight:700; color:var(--corporate-navy); margin-bottom:8px; font-size:13.5px;">
+            📋 تحديد بنود الشروط المطبوعة في هذا العرض (حدد الشروط المرغوبة أو عدّل نصها):
+          </div>
+          <div id="quoteTermsListContainer" style="display:flex; flex-direction:column; gap:8px;">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- VIEW 3: QUOTATION HISTORY -->
+      <!-- ============================================================= -->
+      <section id="view-history" class="view-section">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>سجل وتاريخ عروض الأسعار الصادرة</h1>
+            <p>استعراض جميع عروض الأسعار المسجلة في Google Sheets مع معاينة الـ PDF وإعادة التصدير</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>رقم المرجع (Ref)</th>
+                  <th>العميل</th>
+                  <th>المشروع</th>
+                  <th>التاريخ</th>
+                  <th>اللغة</th>
+                  <th>الإجمالي شامل الضريبة</th>
+                  <th>الحالة</th>
+                  <th>معاينة وطباعة</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <tr><td colspan="8" style="text-align:center; color:#888; padding:24px;">جاري تحميل السجل...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- VIEW 4: CUSTOMERS & PROJECTS -->
+      <!-- ============================================================= -->
+      <section id="view-customers" class="view-section">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>سجل العملاء والمشاريع</h1>
+            <p>إدارة بيانات العملاء والربط مع مشاريع الفلل والمشاريع التجارية</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>معرف العميل</th>
+                  <th>الاسم (عربي)</th>
+                  <th>الاسم (إنجليزي)</th>
+                  <th>رقم الهاتف</th>
+                  <th>المدينة</th>
+                </tr>
+              </thead>
+              <tbody id="customersTableBody">
+                <tr><td colspan="5" style="text-align:center; color:#888; padding:24px;">جاري تحميل العملاء...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- VIEW 5: PRICE LIST -->
+      <!-- ============================================================= -->
+      <section id="view-pricelist" class="view-section">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>قائمة أسعار الأنظمة والقطاعات المعتمدة</h1>
+            <p>أسعار المتر المربع للأنظمة (سرايا، رويال، دبل جلاس، كلادينج، مصاعد)</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>رمز النظام</th>
+                  <th>التصنيف</th>
+                  <th>اسم النظام (عربي)</th>
+                  <th>اسم النظام (إنجليزي)</th>
+                  <th>سعر المتر المربع (SAR)</th>
+                  <th>الحد الأدنى للوحدة (SAR)</th>
+                </tr>
+              </thead>
+              <tbody id="priceListTableBody">
+                <tr><td colspan="6" style="text-align:center; color:#888; padding:24px;">جاري تحميل قائمة الأسعار...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- VIEW 6: MASTER TERMS & POLICIES MANAGER -->
+      <!-- ============================================================= -->
+      <section id="view-decisions" class="view-section">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>إدارة الشروط والسياسات التجارية العامة</h1>
+            <p>إدارة بنود الشروط والسياسات المعتمدة وإضافة شروط جديدة أو تعديل صياغتها لتظهر تلقائياً في عروض الأسعار</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="btnAddNewMasterTerm">+ إضافة شرط جديد للمكتبة</button>
+        </div>
+
+        <!-- Master Terms Library Card -->
+        <div class="card">
+          <div class="card-header" style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-title">مكتبة الشروط والسياسات العامة (Master Terms Library)</div>
+            <button type="button" class="btn btn-sm btn-secondary" id="btnResetDefaultTerms">استعادة الشروط الافتراضية</button>
+          </div>
+          <p style="font-size:12.5px; color:#666; margin-bottom:14px;">
+            هذه الشروط هي السياسات المعيارية المعتمدة لشركة بريكسن. يمكنك تعديل أي شرط، إضافة سياسات جديدة، أو حذف أي شرط ترغب في استبعاده:
+          </p>
+
+          <div id="masterTermsContainer" style="display:flex; flex-direction:column; gap:12px;">
+            <!-- Dynamically populated by app.js -->
+          </div>
+        </div>
+      </section>
+</main>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- MODAL: LIVE QUOTATION PREVIEW & PRINT -->
+  <!-- ============================================================= -->
+  <div class="modal-overlay" id="previewModal">
+    <div class="modal-content" style="max-width:960px;">
+      <div class="modal-header" style="flex-wrap:wrap; gap:12px;">
+        <div style="font-weight:700; font-size:16px; color:var(--corporate-navy);">معاينة عرض السعر المعتمد (Official Quotation Preview)</div>
+        <div class="modal-lang-toggle" style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:12px; font-weight:600; color:#555;">معاينة المستند:</span>
+          <button type="button" class="btn btn-sm btn-preview-file-switch btn-primary" data-file="AR" id="btnPreviewFileAR">📄 الملف العربي (Arabic PDF)</button>
+          <button type="button" class="btn btn-sm btn-preview-file-switch btn-secondary" data-file="EN" id="btnPreviewFileEN">📄 الملف الإنجليزي (English PDF)</button>
+        </div>
+        <button type="button" class="btn btn-sm btn-secondary close-modal-btn">✕ إغلاق</button>
+      </div>
+      <div class="modal-body preview-sheet-frame" id="modalPreviewContainer">
+        <!-- Rendered A4 Sheet -->
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <button type="button" class="btn btn-secondary close-modal-btn">إغلاق</button>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-secondary" id="printArabicOnlyBtn">🖨️ طباعة الملف العربي (PDF)</button>
+          <button type="button" class="btn btn-secondary" id="printEnglishOnlyBtn">🖨️ طباعة الملف الإنجليزي (PDF)</button>
+          <button type="button" class="btn btn-primary" id="printQuotationBtn">🖨️ طباعة الملف المعروض حالياً</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ============================================================= -->
+  <!-- MODAL: ADD / EDIT TERM OR POLICY -->
+  <!-- ============================================================= -->
+  <div class="modal-overlay" id="termEditModal">
+    <div class="modal-content" style="max-width:650px;">
+      <div class="modal-header">
+        <div style="font-weight:700; font-size:16px; color:var(--corporate-navy);" id="termModalTitle">إضافة / تعديل شرط تجاري</div>
+        <button type="button" class="btn btn-sm btn-secondary close-term-modal-btn">✕ إغلاق</button>
+      </div>
+      <div class="modal-body" style="padding:16px;">
+        <input type="hidden" id="editTermId">
+        <input type="hidden" id="editTermScope" value="MASTER"> <!-- 'MASTER' or 'QUOTE' -->
+        
+        <div class="form-group" style="margin-bottom:12px;">
+          <label class="form-label">عنوان أو تصنيف الشرط <span class="required">*</span>:</label>
+          <input type="text" class="form-control" id="editTermTitle" placeholder="مثال: شروط الدفع، مدة التوريد، الضمان...">
+        </div>
+
+        <div class="form-group" style="margin-bottom:12px;">
+          <label class="form-label">نص الشرط باللغة العربية <span class="required">*</span>:</label>
+          <textarea class="form-control" id="editTermTextAr" rows="3" placeholder="اكتب صياغة الشرط بالعربية..."></textarea>
+        </div>
+
+        <div class="form-group" style="margin-bottom:12px;">
+          <label class="form-label">نص الشرط باللغة الإنجليزية (English Text):</label>
+          <textarea class="form-control" id="editTermTextEn" rows="3" placeholder="Write term text in English (optional)..." dir="ltr"></textarea>
+        </div>
+
+        <div class="form-group" style="margin-bottom:6px;">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:600; font-size:13px;">
+            <input type="checkbox" id="editTermDefaultChecked" checked>
+            <span>تضمين هذا الشرط تلقائياً في عروض الأسعار الجديدة (Default Included)</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close-term-modal-btn">إلغاء</button>
+        <button type="button" class="btn btn-primary" id="btnSaveTermModal">💾 حفظ الشرط</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
