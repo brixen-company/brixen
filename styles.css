@@ -1,0 +1,1466 @@
+﻿/* ==========================================================================
+   BRIXEN Automated Quotation Management Platform — Stylesheet
+   Design System: Corporate Engineering (Jet Black, Scarlet Red, Steel Navy)
+   ========================================================================== */
+
+:root {
+  --primary-black: #111827;
+  --secondary-black: #1F2937;
+  --accent-red: #E30613;
+  --accent-red-hover: #C50410;
+  --corporate-navy: #1F2937;
+  --secondary-navy: #374151;
+  --navy-light: #F3F4F6;
+  --bg-page: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+  --border-color: #E2E8F0;
+  --border-focus: #374151;
+  --success: #10B981;
+  --success-bg: #ECFDF5;
+  --warning: #F59E0B;
+  --warning-bg: #FFFBEB;
+  --danger: #EF4444;
+  --danger-bg: #FEF2F2;
+  --info: #4B5563;
+  --info-bg: #F3F4F6;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --header-height: 64px;
+  --sidebar-width: 260px;
+}
+
+/* RTL / LTR Core */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  font-size: 14px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Navigation Bar */
+.top-nav {
+  height: var(--header-height);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.brand-divider {
+  width: 1px;
+  height: 28px;
+  background-color: var(--border-color);
+}
+
+.system-title-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.system-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-black);
+  letter-spacing: 0.2px;
+}
+
+.system-subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.badge-connected {
+  background-color: var(--success-bg);
+  color: #065F46;
+  border: 1px solid #A7F3D0;
+}
+
+.badge-warning {
+  background-color: var(--warning-bg);
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+.badge-danger {
+  background-color: var(--danger-bg);
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+/* Main Layout Grid */
+.app-container {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - var(--header-height));
+}
+
+/* Sidebar Navigation */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+[dir="rtl"] .sidebar {
+  border-right: none;
+  border-left: 1px solid var(--border-color);
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: inherit;
+}
+
+.nav-link:hover {
+  background-color: #F1F5F9;
+  color: var(--text-main);
+}
+
+.nav-link.active {
+  background-color: var(--navy-light);
+  color: var(--corporate-navy);
+  font-weight: 700;
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.nav-pill {
+  margin-left: auto;
+  font-size: 10.5px;
+  background-color: var(--corporate-navy);
+  color: #FFF;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+[dir="rtl"] .nav-pill {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Main Workspace Content Area */
+.main-content {
+  flex: 1;
+  padding: 28px 32px;
+  overflow-y: auto;
+}
+
+/* View Sections */
+.view-section {
+  display: none;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.view-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header Area for Views */
+.view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.view-title-group h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-black);
+}
+
+.view-title-group p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Cards & Surfaces */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-black);
+}
+
+/* KPI Dashboard Cards */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--corporate-navy);
+}
+
+.kpi-card.accent-red::before {
+  background-color: var(--accent-red);
+}
+
+.kpi-card.accent-green::before {
+  background-color: var(--success);
+}
+
+.kpi-card.accent-gold::before {
+  background-color: var(--warning);
+}
+
+.kpi-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.kpi-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary-black);
+  margin: 8px 0 4px 0;
+}
+
+.kpi-subtext {
+  font-size: 11.5px;
+  color: var(--text-light);
+}
+
+/* Banner Alerts */
+.alert-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  font-size: 13.5px;
+}
+
+.alert-warning {
+  background-color: var(--warning-bg);
+  border: 1px solid #FDE68A;
+  color: #92400E;
+}
+
+.alert-danger {
+  background-color: var(--danger-bg);
+  border: 1px solid #FECACA;
+  color: #991B1B;
+}
+
+.alert-info {
+  background-color: var(--info-bg);
+  border: 1px solid #D1D5DB;
+  color: #1F2937;
+}
+
+.alert-title {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--corporate-navy);
+  color: #FFF;
+}
+
+.btn-primary:hover {
+  background-color: #111827;
+}
+
+.btn-action {
+  background-color: var(--accent-red);
+  color: #FFF;
+  box-shadow: 0 2px 4px rgba(227, 6, 19, 0.25);
+}
+
+.btn-action:hover {
+  background-color: var(--accent-red-hover);
+}
+
+.btn-secondary {
+  background-color: #FFF;
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background-color: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: var(--radius-sm);
+}
+
+/* Forms & Inputs */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.form-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.form-label .required {
+  color: var(--accent-red);
+}
+
+.form-control {
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: #FFF;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.15);
+}
+
+select.form-control {
+  cursor: pointer;
+}
+
+/* BOQ Dynamic Table Grid */
+.boq-grid-container {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 18px;
+}
+
+.boq-input-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.boq-input-table th {
+  background-color: #F1F5F9;
+  color: var(--text-main);
+  font-weight: 700;
+  padding: 10px 8px;
+  border-bottom: 2px solid var(--border-color);
+  text-align: center;
+}
+
+.boq-input-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.boq-input-table tr:hover {
+  background-color: #F8FAFC;
+}
+
+.table-input {
+  width: 100%;
+  height: 34px;
+  padding: 4px 8px;
+  border: 1px solid #CBD5E1;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+
+.table-input:focus {
+  outline: none;
+  border-color: var(--corporate-navy);
+}
+
+.rule-flag {
+  color: var(--accent-red);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Quotation Summary Financial Box */
+.summary-box {
+  background-color: #F8FAFC;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  width: 100%;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+[dir="rtl"] .summary-box {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 13.5px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.summary-row.total-row {
+  border-bottom: none;
+  border-top: 2px solid var(--corporate-navy);
+  padding-top: 12px;
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--corporate-navy);
+}
+
+/* Data Tables */
+.data-table-container {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+[dir="rtl"] .data-table {
+  text-align: right;
+}
+
+.data-table th {
+  background-color: #F8FAFC;
+  padding: 12px 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.data-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.data-table tr:hover {
+  background-color: #F8FAFC;
+}
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #FFF;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: #F8FAFC;
+}
+
+/* Live Quotation Preview Container */
+.preview-sheet-frame {
+  background-color: #525659;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.a4-sheet {
+  background-color: #FFF;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 15mm;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 200;
+}
+
+[dir="rtl"] .toast-container {
+  right: auto;
+  left: 24px;
+}
+
+.toast {
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #FFF;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideIn 0.25s ease-out;
+}
+
+.toast-success { background-color: #059669; }
+.toast-error { background-color: #DC2626; }
+.toast-info { background-color: var(--corporate-navy); }
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Print Specific Rules & Footer Margin Fix */
+.btn-lang-modal-switch {
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.footer-sign-container {
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+  margin-top: 26px !important;
+  padding-top: 10px !important;
+  margin-bottom: 5px !important;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important;
+  }
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  /* 100% HIDE EVERYTHING IN WEB APP UI DURING PRINT */
+  .app-container, .sidebar, .top-nav, .main-content, .view-section, .card,
+  .modal-header, .modal-footer, .btn, .no-print, #toastContainer, #printQuotationFrame {
+    display: none !important;
+  }
+  /* WHEN PRINTING VIA CTRL+P IN PREVIEW MODAL, SHOW ONLY MODAL SHEET */
+  .modal-overlay#previewModal {
+    display: block !important;
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+  }
+  .modal-overlay#previewModal .modal-content {
+    display: block !important;
+    position: static !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+  .modal-overlay#previewModal .modal-body,
+  .modal-overlay#previewModal .preview-sheet-frame {
+    display: block !important;
+    position: static !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+  .a4-sheet {
+    box-shadow: none !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding:  12mm 15mm 15mm 15mm !important; box-sizing: border-box !important; 
+    margin: 0 !important;
+    border: none !important;
+    background: #ffffff !important;
+  }
+  .boq-table tr, .basis-table tr, .quote-table tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .summary-table, .terms-box, .sign-table, .footer-table, .footer-sign-container {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  .footer-sign-container, .footer-table, .sign-table {
+    margin-top: 24px !important;
+    margin-bottom: 5px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
+/* Terms Checklist & Management Styles */
+.term-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  background: #ffffff;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.term-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.term-card.selected {
+  border-color: #9ca3af;
+  background: #f8fafc;
+}
+.term-checkbox {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--corporate-navy);
+}
+.term-content {
+  flex: 1;
+}
+.term-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.term-title {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--corporate-navy);
+}
+.term-text-ar {
+  font-size: 12.5px;
+  color: #334155;
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+.term-text-en {
+  font-size: 11.5px;
+  color: #64748b;
+  line-height: 1.4;
+  direction: ltr;
+  text-align: left;
+}
+.term-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.badge-cat {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #e2e8f0;
+  color: #475569;
+  font-weight: 600;
+}
+
+/* =========================================================================
+   VAT Control and Direct Area / Minimum Rule Enhancements
+   ========================================================================= */
+.vat-btn {
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.vat-btn.active {
+  background-color: var(--corporate-navy) !important;
+  color: #fff !important;
+  border-color: var(--corporate-navy) !important;
+}
+.item-area {
+  background-color: #f0fdf4 !important;
+  border-color: #86efac !important;
+  font-weight: 700 !important;
+  color: #166534 !important;
+}
+.item-area:focus {
+  border-color: #22c55e !important;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2) !important;
+  outline: none;
+}
+.min-charge-panel {
+  border: 1px solid #cbd5e1;
+  background-color: #f8fafc;
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+/* Technical Specifications & Basis of Design Controls */
+.badge-disabled {
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+  border: 1px solid #cbd5e1 !important;
+}
+.tech-specs-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  filter: grayscale(40%);
+}
+
+
+/* =========================================================================
+   Official Quotation Document Template Styles (Exact Reference Match)
+   ========================================================================= */
+.a4-sheet {
+  background-color: #ffffff;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 15mm;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
+  color: #1a1a1a !important;
+  line-height: 1.35 !important;
+  font-size: 10pt !important;
+}
+
+.a4-sheet .header-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #111111;
+  padding-bottom: 8px;
+}
+
+.a4-sheet .logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 240px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.a4-sheet .company-info {
+  font-size: 8.5pt;
+  color: #444444;
+  line-height: 1.3;
+}
+
+.a4-sheet .doc-title-ar {
+  font-size: 14pt;
+  font-weight: 700;
+  color: #111827;
+  text-align: left;
+}
+
+.a4-sheet .doc-title-en {
+  font-size: 9pt;
+  color: #666666;
+  text-align: left;
+}
+
+[dir="ltr"] .a4-sheet .doc-title-ar,
+[dir="ltr"] .a4-sheet .doc-title-en {
+  text-align: right;
+}
+
+.a4-sheet .meta-grid {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  font-size: 9.5pt;
+}
+
+.a4-sheet .meta-grid td {
+  padding: 4px 6px;
+  border: 1px solid #cccccc;
+  vertical-align: middle;
+}
+
+.a4-sheet .meta-label {
+  font-weight: 700;
+  background-color: #f3f4f6;
+  width: 16%;
+  color: #111827;
+}
+
+.a4-sheet .customer-greeting {
+  font-size: 9.5pt;
+  margin-bottom: 8px;
+  line-height: 1.45;
+  color: #222222;
+}
+
+.a4-sheet .section-title {
+  font-size: 11pt;
+  font-weight: 700;
+  color: #111827;
+  margin: 12px 0 6px 0;
+  border-bottom: 1.5px solid #1F2937;
+  padding-bottom: 2px;
+}
+
+.a4-sheet .specs-box {
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-right: 4px solid #374151;
+  padding: 8px 12px;
+  font-size: 9pt;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+[dir="ltr"] .a4-sheet .specs-box {
+  border-right: 1px solid #d1d5db;
+  border-left: 4px solid #374151;
+}
+
+.a4-sheet .boq-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  font-size: 9pt;
+}
+
+.a4-sheet .boq-table th {
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 5px 4px;
+  border: 1px solid #000000;
+  text-align: center;
+}
+
+.a4-sheet .boq-table td {
+  padding: 5px 6px;
+  border: 1px solid #d9d9d9;
+  vertical-align: middle;
+}
+
+.a4-sheet .boq-table tr:nth-child(even) {
+  background-color: #fbfbfb;
+}
+
+.a4-sheet .summary-container {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.a4-sheet .summary-table {
+  width: 48%;
+  margin-right: auto;
+  margin-left: 0;
+  border-collapse: collapse;
+  font-size: 9.5pt;
+}
+
+[dir="ltr"] .a4-sheet .summary-table {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.a4-sheet .summary-table td {
+  padding: 5px 8px;
+  border: 1px solid #cccccc;
+}
+
+.a4-sheet .summary-label {
+  font-weight: 700;
+  background-color: #f3f4f6;
+  color: #333333;
+  width: 55%;
+}
+
+.a4-sheet .summary-total {
+  background-color: #f3f4f6;
+  font-weight: 700;
+  font-size: 10.5pt;
+  color: #111827;
+}
+
+.a4-sheet .terms-list {
+  font-size: 8.5pt;
+  line-height: 1.55;
+  margin: 0;
+  padding-right: 18px;
+  color: #333333;
+}
+
+[dir="ltr"] .a4-sheet .terms-list {
+  padding-right: 0;
+  padding-left: 18px;
+}
+
+.a4-sheet .terms-list li {
+  margin-bottom: 3px;
+}
+
+.a4-sheet .sign-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+
+.a4-sheet .stamp-img {
+  height: 80px;
+  width: auto;
+  max-width: 220px;
+  display: inline-block;
+}
+
+/* Document Page Footer */
+.a4-sheet .doc-page-footer {
+  margin-top: 24px;
+  padding-top: 8px;
+  border-top: 1px solid #1F2937;
+  text-align: center;
+  font-size: 8pt;
+  color: #444444;
+  line-height: 1.45;
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+
+.a4-sheet .doc-page-footer .footer-links {
+  color: #111827;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+
+/* ==========================================================================
+   2-PAGE QUOTATION & PRINT ARCHITECTURE (BRIXEN OFFICIAL)
+   ========================================================================== */
+
+.quotation-document {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+  width: 100%;
+}
+
+.a4-page {
+  background-color: #ffffff;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 8mm 12mm 8mm 12mm;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
+  color: #1a1a1a !important;
+  line-height: 1.3 !important;
+  font-size: 9pt !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.a4-page .page-content {
+  flex: 1 0 auto;
+}
+
+.a4-page .page-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 5px;
+  border-top: 1.5px solid #8B0000;
+  text-align: left !important;
+  direction: ltr !important;
+  font-size: 7.5pt;
+  color: #444;
+  line-height: 1.3;
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+
+.a4-page .page-footer .footer-brand {
+  font-weight: 700;
+  font-size: 8pt;
+  color: #111;
+  margin-bottom: 1px;
+}
+
+.a4-page .page-footer .footer-details {
+  color: #555;
+}
+
+.a4-page .page-footer .footer-links {
+  color: #8B0000;
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.a4-page .header-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 6px;
+  border-bottom: 2px solid #111111;
+  padding-bottom: 4px;
+}
+
+.a4-page .logo-img {
+  height: 38px;
+  width: auto;
+  max-width: 200px;
+  display: block;
+}
+
+.a4-page .doc-title-ar {
+  font-size: 13pt;
+  font-weight: 800;
+  color: #8B0000;
+  text-align: left;
+}
+
+.a4-page .doc-title-en {
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: #111827;
+  text-align: left;
+}
+
+[dir="ltr"] .a4-page .doc-title-ar,
+[dir="ltr"] .a4-page .doc-title-en {
+  text-align: right;
+}
+
+.a4-page .meta-grid {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 6px;
+  font-size: 8.5pt;
+}
+
+.a4-page .meta-grid td {
+  padding: 3px 6px;
+  border: 1px solid #cccccc;
+  vertical-align: middle;
+  font-weight: 700 !important;
+}
+
+.a4-page .meta-label {
+  font-weight: 800 !important;
+  background-color: #f3f4f6;
+  width: 15%;
+  color: #111827;
+}
+
+.a4-page .customer-greeting {
+  font-size: 8.5pt;
+  margin-bottom: 5px;
+  line-height: 1.35;
+  color: #222222;
+}
+
+.a4-page .section-title {
+  font-size: 9.5pt;
+  font-weight: 800;
+  margin: 6px 0 4px 0;
+  border-bottom: 1.5px solid #8B0000;
+  padding-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.a4-page .title-red {
+  color: #8B0000;
+}
+
+.a4-page .title-black {
+  color: #111827;
+}
+
+.a4-page .specs-box {
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-right: 4px solid #8B0000;
+  padding: 5px 8px;
+  font-size: 8pt;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+[dir="ltr"] .a4-page .specs-box {
+  border-right: 1px solid #d1d5db;
+  border-left: 4px solid #8B0000;
+}
+
+.a4-page .boq-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 6px;
+  font-size: 8.5pt;
+}
+
+.a4-page .boq-table th {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  padding: 4.5px 3px;
+  border: 1px solid #000000 !important;
+  text-align: center;
+}
+
+.a4-page .boq-table td {
+  padding: 3.5px 5px;
+  border: 1px solid #d9d9d9;
+  vertical-align: middle;
+}
+
+.a4-page .boq-table tr:nth-child(even) {
+  background-color: #fbfbfb;
+}
+
+.a4-page .summary-container {
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.a4-page .summary-table {
+  width: 48%;
+  margin-right: auto;
+  margin-left: 0;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+
+[dir="ltr"] .a4-page .summary-table {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.a4-page .summary-table td {
+  padding: 3px 6px;
+  border: 1px solid #cccccc;
+  font-weight: 700;
+}
+
+.a4-page .summary-label {
+  font-weight: 700;
+  background-color: #f3f4f6;
+  color: #333333;
+  width: 55%;
+}
+
+.a4-page .summary-total {
+  background-color: #f3f4f6;
+  font-weight: 800;
+  font-size: 9.5pt;
+  color: #8B0000;
+}
+
+.a4-page .terms-list {
+  font-size: 8pt;
+  line-height: 1.45;
+  margin: 0;
+  padding-right: 18px;
+  color: #333333;
+}
+
+[dir="ltr"] .a4-page .terms-list {
+  padding-right: 0;
+  padding-left: 18px;
+}
+
+.a4-page .terms-list li {
+  margin-bottom: 3px;
+}
+
+.a4-page .sign-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+
+.a4-page .stamp-img {
+  height: 95px !important;
+  width: auto;
+  max-width: 240px;
+  display: inline-block;
+}
+
+/* Print Override for 2-Page Architecture */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .quotation-document {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .a4-page {
+    width: 100% !important;
+    min-height: 297mm !important;
+    height: 297mm !important;
+    padding: 8mm 12mm 8mm 12mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-sizing: border-box !important;
+  }
+  .a4-page.page-1 {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+  .a4-page.page-2 {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+  .a4-page .page-content {
+    flex: 1 0 auto !important;
+  }
+  .a4-page .page-footer {
+    flex-shrink: 0 !important;
+    margin-top: auto !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
